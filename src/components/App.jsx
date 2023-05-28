@@ -1,16 +1,24 @@
-export const App = () => {
+// import { useState, useEffect } from 'react';
+// import { nanoid } from 'nanoid';
+import ContactForm from './ContactForm/ContactForm';
+import Filter from './Filter';
+import ContactList from './Contact/ContactList';
+import { useSelector } from 'react-redux';
+
+export default function App() {
+  const contacts = useSelector(state => state.contacts.contacts);
+  console.log(contacts);
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      <ContactForm />
+      <Filter />
+
+      {contacts?.length > 0 ? (
+        <ContactList />
+      ) : (
+        <p className="app">You don’t have any contacts yet...🥺</p>
+      )}
     </div>
   );
-};
+}
