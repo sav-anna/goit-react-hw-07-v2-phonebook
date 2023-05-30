@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { combineReducers } from 'redux';
 import { fetchContacts, addContact, deleteContact } from 'redux/operations';
 const initialState = {
   items: [],
@@ -65,8 +64,3 @@ export const filter = createSlice({
 export const contactsReducer = contacts.reducer;
 export const filterReducer = filter.reducer;
 export const { filterContacts } = filter.actions;
-
-export const reducer = combineReducers({
-  contacts: contactsReducer,
-  filter: filterReducer,
-});

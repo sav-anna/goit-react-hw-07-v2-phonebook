@@ -3,16 +3,16 @@ import ContactItem from '../ContactItems';
 import { useSelector } from 'react-redux';
 
 import {
-  selectorContacts,
-  selectorContactsIsLoading,
-  selectorFilter,
+  getContacts,
+  getContactsIsLoading,
+  getFilter,
 } from '../../../redux/selectors';
 import SyncLoader from 'react-spinners/SyncLoader';
 
 export const ContactList = () => {
-  const contacts = useSelector(selectorContacts);
-  const filter = useSelector(selectorFilter);
-  const isLoading = useSelector(selectorContactsIsLoading);
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
+  const isLoading = useSelector(getContactsIsLoading);
 
   const getVisibleContacts = () => {
     if (!filter) {
