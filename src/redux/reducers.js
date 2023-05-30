@@ -40,15 +40,16 @@ export const contacts = createSlice({
       }
       state.items = [...state.items, payload];
     },
+
+    [addContact.rejected]: handleRejected,
+    [deleteContact.pending]: handlePending,
+    [deleteContact.fulfilled](state, { payload }) {
+      state.isLoading = false;
+      state.error = null;
+      state.items = state.items.filter(({ id }) => id !== payload);
+    },
+    [deleteContact.rejected]: handleRejected,
   },
-  [addContact.rejected]: handleRejected,
-  [deleteContact.pending]: handlePending,
-  [deleteContact.fulfilled](state, { payload }) {
-    state.isLoading = false;
-    state.error = null;
-    state.items = state.items.filter(({ id }) => id !== payload);
-  },
-  [deleteContact.rejected]: handleRejected,
 });
 
 export const filter = createSlice({
