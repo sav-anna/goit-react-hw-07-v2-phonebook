@@ -1,19 +1,24 @@
-// import { useState, useEffect } from 'react';
-// import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter';
 import ContactList from './Contact/ContactList';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectorContacts } from '../redux/selectors';
+import { useEffect } from 'react';
+import { fetchContacts } from 'redux/operations';
 
 export default function App() {
-  const contacts = useSelector(state => state.contacts.contacts);
-  console.log(contacts);
+  const contacts = useSelector(selectorContacts);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <div>
       <ContactForm />
       <Filter />
-
       {contacts?.length > 0 ? (
         <ContactList />
       ) : (
